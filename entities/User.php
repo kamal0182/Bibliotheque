@@ -59,9 +59,9 @@ class User {
 
     }
 }
-$user1 = new User("1","younes","kamal","youenskamal@gmail.com","kamal1234",new Role(1,"Admin"));
-echo $user1->getname();
-var_dump ($user1);
+// $user1 = new User("1","younes","kamal","youenskamal@gmail.com","kamal1234",new Role(1,"Admin"));
+// echo $user1->getname();
+// var_dump ($user1);
 
 
 ?>
