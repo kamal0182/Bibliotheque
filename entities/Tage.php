@@ -20,9 +20,5 @@
         $this->id = $id ;
     }
   }
-  $tag1 = new Tage(1,"Drama");
-//   var_dump($tag1);
-//  echo  $tag1->getName();
-// echo " " ;
-//  echo    $tag1->getId();
+
 ?>

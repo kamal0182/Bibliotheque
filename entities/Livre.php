@@ -1,20 +1,29 @@
 <?php
 require_once "Category.php";
 require_once "Tage.php";
-   class Livre{
+   class Livre extends Crud {
     private $id ;
     private $name ; 
     private $auteur ;
-    private $category ; 
-    private $tags = [];
+    private Category  $category ; 
+    private    $tags = [];
     public function __construct($id , $name , $auteur ,Category $category ) {
         $this->id = $id;
         $this->name = $name ;
         $this->auteur = $auteur ;
         $this->category = $category ;
     }
+    public function tablename(): string{
+        return "Livre";
+    }
+    public function column(): array{
+        return ["name"=>$this->name,"auteur"=>$this->auteur,"Category"=>$this->Category,"Tag"=>$this->tags] ;
+    }     
     public function getname (){
         return $this->name ;
+
+    }
+    public function categoryname($name){
 
     }
     public function getId (){
@@ -26,8 +35,8 @@ require_once "Tage.php";
 
     }
     
-    public function addTags(Tage $tage){
-        $this->tags[]  = $tage ;
+    public function addTags( ){
+         
     }
     public function getTags(){
         return $this->tags ;

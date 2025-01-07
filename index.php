@@ -1,24 +1,23 @@
 <?php
-require_once "./User.php";
-require_once "./Role.php";
-require_once "./../core/config/Database.php";
-require_once "./../core/config/Found.php";
-require_once "./../core/config/Crud.php";
+require_once './entities/User.php';
+require_once './entities/Role.php';
+require_once './core/config/Found.php';
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Responsive Bootstrap Dashboard and Admin Template - ByteWebster</title>
+  <title>Bibblioschool</title>
   <link rel="stylesheet" href="./style.css">
   <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
   <style>
   
 @import url(https://unpkg.com/@webpixels/css@1.1.5/dist/index.css);
-
-
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
   </style>
 </head>
@@ -62,7 +61,7 @@ require_once "./../core/config/Crud.php";
             </div>
             <!-- Collapse -->
             <div class="collapse navbar-collapse" id="sidebarCollapse">
-                    <!-- Navigation -->
+                <!-- Navigation -->
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="#">
@@ -351,51 +350,38 @@ require_once "./../core/config/Crud.php";
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col">Name</th>
-                                    
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Role</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Company</th>
+                                    <th scope="col">Offer</th>
                                     <th scope="col">Meeting</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <?php 
-                                    $users = new User();
-                                    
-                                    // $users->tablename();
-                                  
-                                foreach($users->read() as $user){
-                                 $users->setRoleid($user->id_role);
-                                 $users->setattribute($user->name ,$user->prenom , $user->email , $user->password );  
-                                 $users->setId($user->id);   
-                                
-                                
-
-                                    ?>
                                     <td>
-                                    
-                                        
+                                        <img alt="..." src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80" class="avatar avatar-sm rounded-circle me-2">
                                         <a class="text-heading font-semibold" href="#">
-                                           <?php
-                                           echo $users->getName()." ".$users->getprenom() ;
-                                           ?>
+                                            Jason Martinez
                                         </a>
                                     </td>
                                     <td>
-                                        <?php
-                                       echo $users->getemail();
-                                       ?>
+                                        Feb 15, 2023
                                     </td>
                                     <td>
                                         <img alt="..." src="https://bytewebster.com/img/logo.png" class="avatar avatar-xs rounded-circle me-2">
                                         <a class="text-heading font-semibold" href="https://www.bytewebster.com/">
-                                        <?php
-                                       echo $users->getRole()->getName(); 
-                                       ?>
+                                            Bytewebster
                                         </a>
                                     </td>
-                                    
+                                    <td>
+                                        $3.500
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-lg badge-dot">
+                                            <i class="bg-success"></i>Scheduled
+                                        </span>
+                                    </td>
                                     <td class="text-end">
                                         <a href="#" class="btn btn-sm btn-neutral">View</a>
                                         <button type="button" onclick="showSweetAlert()" class="btn btn-sm btn-square btn-neutral text-danger-hover">
@@ -403,9 +389,285 @@ require_once "./../core/config/Crud.php";
                                         </button>
                                     </td>
                                 </tr>
-                             <?php }
-                             ?>
-    
+                                <tr>
+                                    <td>
+                                        <img alt="..." src="https://images.unsplash.com/photo-1610271340738-726e199f0258?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80" class="avatar avatar-sm rounded-circle me-2">
+                                        <a class="text-heading font-semibold" href="#">
+                                            Ashley Williams
+                                        </a>
+                                    </td>
+                                    <td>
+                                        Apr 15, 2023
+                                    </td>
+                                    <td>
+                                        <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-2.png" class="avatar avatar-xs rounded-circle me-2">
+                                        <a class="text-heading font-semibold" href="#">
+                                            Netguru
+                                        </a>
+                                    </td>
+                                    <td>
+                                        $2.750
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-lg badge-dot">
+                                            <i class="bg-warning"></i>Postponed
+                                        </span>
+                                    </td>
+                                    <td class="text-end">
+                                        <a href="#" class="btn btn-sm btn-neutral">View</a>
+                                        <button type="button" onclick="showSweetAlert()" class="btn btn-sm btn-square btn-neutral text-danger-hover">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img alt="..." src="https://images.unsplash.com/photo-1610878722345-79c5eaf6a48c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80" class="avatar avatar-sm rounded-circle me-2">
+                                        <a class="text-heading font-semibold" href="#">
+                                            Melissa Chen
+                                        </a>
+                                    </td>
+                                    <td>
+                                        Mar 20, 2023
+                                    </td>
+                                    <td>
+                                        <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-3.png" class="avatar avatar-xs rounded-circle me-2">
+                                        <a class="text-heading font-semibold" href="#">
+                                            Figma
+                                        </a>
+                                    </td>
+                                    <td>
+                                        $4.200
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-lg badge-dot">
+                                            <i class="bg-success"></i>Scheduled
+                                        </span>
+                                    </td>
+                                    <td class="text-end">
+                                        <a href="#" class="btn btn-sm btn-neutral">View</a>
+                                        <button type="button" onclick="showSweetAlert()" class="btn btn-sm btn-square btn-neutral text-danger-hover">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img alt="..." src="https://images.unsplash.com/photo-1612422656768-d5e4ec31fac0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80" class="avatar avatar-sm rounded-circle me-2">
+                                        <a class="text-heading font-semibold" href="#">
+                                            Emily Davis
+                                        </a>
+                                    </td>
+                                    <td>
+                                        Feb 15, 2023
+                                    </td>
+                                    <td>
+                                        <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-4.png" class="avatar avatar-xs rounded-circle me-2">
+                                        <a class="text-heading font-semibold" href="#">
+                                            Mailchimp
+                                        </a>
+                                    </td>
+                                    <td>
+                                        $3.500
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-lg badge-dot">
+                                            <i class="bg-dark"></i>Not discussed
+                                        </span>
+                                    </td>
+                                    <td class="text-end">
+                                        <a href="#" class="btn btn-sm btn-neutral">View</a>
+                                        <button type="button" onclick="showSweetAlert()" class="btn btn-sm btn-square btn-neutral text-danger-hover">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img alt="..." src="https://images.unsplash.com/photo-1608976328267-e673d3ec06ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80" class="avatar avatar-sm rounded-circle me-2">
+                                        <a class="text-heading font-semibold" href="#">
+                                            Thomas Nguyen
+                                        </a>
+                                    </td>
+                                    <td>
+                                        Apr 10, 2023
+                                    </td>
+                                    <td>
+                                        <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-5.png" class="avatar avatar-xs rounded-circle me-2">
+                                        <a class="text-heading font-semibold" href="#">
+                                            Webpixels
+                                        </a>
+                                    </td>
+                                    <td>
+                                        $1.500
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-lg badge-dot">
+                                            <i class="bg-danger"></i>Canceled
+                                        </span>
+                                    </td>
+                                    <td class="text-end">
+                                        <a href="#" class="btn btn-sm btn-neutral">View</a>
+                                        <button type="button" onclick="showSweetAlert()" class="btn btn-sm btn-square btn-neutral text-danger-hover">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img alt="..." src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80" class="avatar avatar-sm rounded-circle me-2">
+                                        <a class="text-heading font-semibold" href="#">
+                                            Jason Martinez
+                                        </a>
+                                    </td>
+                                    <td>
+                                        Feb 15, 2023
+                                    </td>
+                                    <td>
+                                        <img alt="..." src="https://bytewebster.com/img/logo.png" class="avatar avatar-xs rounded-circle me-2">
+                                        <a class="text-heading font-semibold" href="https://www.bytewebster.com/">
+                                            Bytewebster
+                                        </a>
+                                    </td>
+                                    <td>
+                                        $3.500
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-lg badge-dot">
+                                            <i class="bg-success"></i>Scheduled
+                                        </span>
+                                    </td>
+                                    <td class="text-end">
+                                        <a href="#" class="btn btn-sm btn-neutral">View</a>
+                                        <button type="button" onclick="showSweetAlert()" class="btn btn-sm btn-square btn-neutral text-danger-hover">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img alt="..." src="https://images.unsplash.com/photo-1610271340738-726e199f0258?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80" class="avatar avatar-sm rounded-circle me-2">
+                                        <a class="text-heading font-semibold" href="#">
+                                            Ashley Williams
+                                        </a>
+                                    </td>
+                                    <td>
+                                        Apr 15, 2023
+                                    </td>
+                                    <td>
+                                        <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-2.png" class="avatar avatar-xs rounded-circle me-2">
+                                        <a class="text-heading font-semibold" href="#">
+                                            Netguru
+                                        </a>
+                                    </td>
+                                    <td>
+                                        $2.750
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-lg badge-dot">
+                                            <i class="bg-warning"></i>Postponed
+                                        </span>
+                                    </td>
+                                    <td class="text-end">
+                                        <a href="#" class="btn btn-sm btn-neutral">View</a>
+                                        <button type="button" onclick="showSweetAlert()" class="btn btn-sm btn-square btn-neutral text-danger-hover">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img alt="..." src="https://images.unsplash.com/photo-1610878722345-79c5eaf6a48c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80" class="avatar avatar-sm rounded-circle me-2">
+                                        <a class="text-heading font-semibold" href="#">
+                                            Melissa Chen
+                                        </a>
+                                    </td>
+                                    <td>
+                                        Mar 20, 2023
+                                    </td>
+                                    <td>
+                                        <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-3.png" class="avatar avatar-xs rounded-circle me-2">
+                                        <a class="text-heading font-semibold" href="#">
+                                            Figma
+                                        </a>
+                                    </td>
+                                    <td>
+                                        $4.200
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-lg badge-dot">
+                                            <i class="bg-success"></i>Scheduled
+                                        </span>
+                                    </td>
+                                    <td class="text-end">
+                                        <a href="#" class="btn btn-sm btn-neutral">View</a>
+                                        <button type="button" onclick="showSweetAlert()" class="btn btn-sm btn-square btn-neutral text-danger-hover">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img alt="..." src="https://images.unsplash.com/photo-1612422656768-d5e4ec31fac0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80" class="avatar avatar-sm rounded-circle me-2">
+                                        <a class="text-heading font-semibold" href="#">
+                                            Emily Davis
+                                        </a>
+                                    </td>
+                                    <td>
+                                        Feb 15, 2023
+                                    </td>
+                                    <td>
+                                        <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-4.png" class="avatar avatar-xs rounded-circle me-2">
+                                        <a class="text-heading font-semibold" href="#">
+                                            Mailchimp
+                                        </a>
+                                    </td>
+                                    <td>
+                                        $3.500
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-lg badge-dot">
+                                            <i class="bg-dark"></i>Not discussed
+                                        </span>
+                                    </td>
+                                    <td class="text-end">
+                                        <a href="#" class="btn btn-sm btn-neutral">View</a>
+                                        <button type="button" onclick="showSweetAlert()" class="btn btn-sm btn-square btn-neutral text-danger-hover">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img alt="..." src="https://images.unsplash.com/photo-1608976328267-e673d3ec06ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80" class="avatar avatar-sm rounded-circle me-2">
+                                        <a class="text-heading font-semibold" href="#">
+                                            Thomas Nguyen
+                                        </a>
+                                    </td>
+                                    <td>
+                                        Apr 10, 2023
+                                    </td>
+                                    <td>
+                                        <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-5.png" class="avatar avatar-xs rounded-circle me-2">
+                                        <a class="text-heading font-semibold" href="#">
+                                            Webpixels
+                                        </a>
+                                    </td>
+                                    <td>
+                                        $1.500
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-lg badge-dot">
+                                            <i class="bg-danger"></i>Canceled
+                                        </span>
+                                    </td>
+                                    <td class="text-end">
+                                        <a href="#" class="btn btn-sm btn-neutral">View</a>
+                                        <button type="button" onclick="showSweetAlert()" class="btn btn-sm btn-square btn-neutral text-danger-hover">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>

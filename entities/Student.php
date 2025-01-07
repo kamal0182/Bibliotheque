@@ -18,20 +18,5 @@ class Student extends User {
        
     }
 }
-$role1 = new Role(1,"Student");
-$admin1 = new Student(1,"younes","kamal","kamalyouness277@gmail.com","kamal1234",$role1);
-$cate = new Category(1,"Drama");
-$livre1 = new Livre(1,"message from underground","dostoevsky",$cate);
 
-echo "<pre>" ;
-
-
-$admin2 = new Student(3,"younes","kamal","ascascasc@gmail.com","kamal1234",$role1);
-
-$admin1->createReservation($livre1 , $admin2);
-$admin1->createReservation($livre1 , $admin1);
-
-echo "<pre>" ;
-var_dump($admin1);
-echo "</pre>";
 ?>

@@ -2,9 +2,11 @@
 require_once "User.php";
 
 class Admin extends User {
-    
+    public function addLivre ($id , $name , $auteur ,Category $category , Tage $tag ){
+        $nwlivre = new Livre($id , $name , $auteur , $category );
+    }
     public function addRole(Role  $roleName){
-
+        
     }
     public function modifyrole(Role $roleName){
 
