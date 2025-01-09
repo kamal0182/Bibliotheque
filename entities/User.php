@@ -1,6 +1,8 @@
 <?php 
 require_once "Role.php";
 require_once "./../core/config/Crud.php";
+require_once "./../core/config/Found.php";
+
 class User extends Crud {
     private int $id ; 
     private string $name ; 
@@ -34,10 +36,7 @@ class User extends Crud {
     public function setRoleid($id){
         $this->role =  new Role();
         $name_role = $this->role->getbyid($id);
-        $this->role->setRole($id, $name_role);
-    
-      
-        
+        $this->role->setRole($id, $name_role);  
     }
     public function tablename(): string{
         return "User";
@@ -47,7 +46,6 @@ class User extends Crud {
     }
     public function getName (){
         return $this->name ;
-
     }
     public function getid (){
         return $this->id ;
@@ -61,6 +59,10 @@ class User extends Crud {
         return $this->email ;
         
     }
+    public function findEmail($email , $password){
+        $found = new Found();
+       return ( $found->findbyEmail($email,$password))   ;
+    }
     public function getRole(){
         return $this->role ;
     }
@@ -69,9 +71,7 @@ class User extends Crud {
         return $this->password ;
         
     }
-    // public function getrole(){
-    //     return $this->role  ;
-    // }
+   
     public function setName($name){
         $this->name =  $name ; 
     }

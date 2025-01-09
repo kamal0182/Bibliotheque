@@ -15,7 +15,6 @@ class Role{
         $this->name = $name ;
         $this->id = $id;
         }
-   
     public function tablename(): string{
         return "Role";
     }

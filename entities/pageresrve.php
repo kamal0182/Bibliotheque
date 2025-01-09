@@ -251,9 +251,7 @@ require_once "./../core/config/Crud.php";
 </div>
                     <!-- Nav -->
                     <ul class="nav nav-tabs mt-4 overflow-x border-0">
-                        <li class="nav-item ">
-                            <a onclick="showBOOks('Users')" href="#" class="nav-link active">All Users</a>
-                        </li>
+                       
                         <li class="nav-item">
                             <a onclick="showBOOks('books')"  href="#" class="nav-link font-regular">Books</a>
                         </li>
@@ -268,33 +266,7 @@ require_once "./../core/config/Crud.php";
         <main class="py-6 bg-surface-secondary">
             <div class="container-fluid">
                 <!-- Card stats -->
-                <div class="row g-6 mb-6">
-                    <div class="col-xl-3 col-sm-6 col-12">
-                        <div  class="card shadow border-0">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col">
-                                        <span class="h6 font-semibold text-muted text-sm d-block mb-2">Users</span>
-                                        <span class="h3 font-bold mb-0"><?php
-                                        $users = new User();
-                                        echo count($users->read())?>
-                                        </span>
-                                    </div>
-                                    <div class="col-auto">
-                                        <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
-                                        <i class="bi bi-people"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mt-2 mb-0 text-sm">
-                                    <span class="badge badge-pill bg-soft-success text-success me-2">
-                                        <i class="bi bi-arrow-up me-1"></i>37%
-                                    </span>
-                                    <span class="text-nowrap text-xs text-muted">Since last month</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+              
                     <div class="col-xl-3 col-sm-6 col-12">
                         <div class="card shadow border-0">
                             <div class="card-body">
@@ -320,6 +292,63 @@ require_once "./../core/config/Crud.php";
                             </div>
                         </div>
                     </div>
+                    <table  class="table table-hover table-nowrap">
+          <thead  class="thead-light">
+          <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Auteur</th>
+          <th scope="col">Category</th>
+          <th scope="col">Meeting</th>
+          <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          
+          <?php
+        $kama = new Livre();
+    
+        
+        $kama->read();
+        ($kama->read());
+        foreach($kama->read() as $livre){
+            $kama->setAttributes($livre->name,$livre->auteur);
+            $kama->setId($livre->id);
+            $kama->SetcategoryId($livre->id_Category);
+            ?>   
+                                     <tr>
+                                     <td>
+                                     
+                                     
+                                     <a class="text-heading font-semibold" href="#">
+                                     <?php
+                                           echo $kama->getname();
+                                           ?>
+                                        </a>
+                                    </td>
+                                    <td>
+                                    <?php
+                                       echo $kama->getAuteur();
+                                       ?>
+                                    </td>
+                                    <td>
+                                    <img alt="..." src="https://bytewebster.com/img/logo.png" class="avatar avatar-xs rounded-circle me-2">
+                                    <a class="text-heading font-semibold" href="https://www.bytewebster.com/">
+                                    <?php
+                                       echo $kama->getCategory()->getName(); 
+                                       ?>
+                                        </a>
+                                        </td>
+                                        
+                                        <td class="text-end">|
+                                        <a onclick="CreateReservation()" href="#" class="btn btn-sm btn-neutral">Reserve</a>
+                                      
+                                        
+                                        </td>
+                                        </tr> <?php  } ?> 
+                                        
+                                        </tbody>
+                                        </table> 
+                                        </div>`
                     <!-- <div class="col-xl-3 col-sm-6 col-12">
                         <div class="card shadow border-0">
                             <div class="card-body">
@@ -367,76 +396,7 @@ require_once "./../core/config/Crud.php";
                         </div>
                     </div>
                 </div> -->
-                <div class="card shadow border-0 mb-7">
-                    <div class="card-header">
-                        <h5 class="mb-0">Applications</h5>
-                    </div>
-                    <div id="books" class="table-responsive">
-                        <table  class="table table-hover table-nowrap">
-                            <thead  class="thead-light">
-                                <tr>
-                                    <th scope="col">Name</th>
-                                    
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Role</th>
-                                    <th scope="col">Meeting</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                               
-                                    <?php 
-                                    $users = new User();
-                                    
-                                    $users->tablename();
-                                    
-                                    
-                                  
-                                foreach($users->read() as $user){
-                                 $users->setRoleid($user->id_role);
-                                 $users->setattribute($user->name ,$user->prenom , $user->email , $user->password );  
-                                 $users->setId($user->id);   
-                                
-                                
-
-                                    ?>
-                                     <tr>
-                                    <td>
-                                    
-                                        
-                                        <a class="text-heading font-semibold" href="#">
-                                           <?php
-                                           echo $users->getName()." ".$users->getprenom() ;
-                                           ?>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <?php
-                                       echo $users->getemail();
-                                       ?>
-                                    </td>
-                                    <td>
-                                        <img alt="..." src="https://bytewebster.com/img/logo.png" class="avatar avatar-xs rounded-circle me-2">
-                                        <a class="text-heading font-semibold" href="https://www.bytewebster.com/">
-                                        <?php
-                                       echo $users->getRole()->getName(); 
-                                       ?>
-                                        </a>
-                                    </td>
-                                    
-                                    <td class="text-end">|
-                                        <a href="#" class="btn btn-sm btn-neutral">View</a>
-                                        <button type="button" onclick="showSweetAlert()" class="btn btn-sm btn-square btn-neutral text-danger-hover">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                             <?php }
-                             ?>
-    
-                            </tbody>
-                        </table>
-                    </div>
+           
                     <?php
                 //    $livre = new Livre("musirable","hamid");
                 //    var_dump($livre);
@@ -501,6 +461,10 @@ require_once "./../core/config/Crud.php";
 </div>
        
  <script>
+    function CreateReservation(){
+       
+        
+}
       document.getElementById("create").style.visibility = "hidden";
     function showBOOks(value){
       if(value == "books"){

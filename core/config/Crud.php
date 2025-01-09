@@ -8,7 +8,7 @@ abstract class Crud {
         $this->db = (new Database())->connection();
         
     $tablename = $this->tablename();
-   
+
       $sql = "SELECT  * from ${tablename}" ;
       $stmt =  $this->db->prepare($sql);
       $stmt->execute();
@@ -23,20 +23,20 @@ abstract class Crud {
         $joincloumn1 = implode("','",$arrValues);
         $tablename = $this->tablename();
         $sql = "INSERT INTO ${tablename} ( ${joincloumn}) values ('${joincloumn1}')" ;
+        
         $stmt =  $this->db->prepare($sql);
         $stmt->execute();
         return $this->db->lastInsertId();
-        
-        
-        
     }
+ 
     public function delet($id){
+        $this->db = (new Database())->connection();
         // $keys = array_keys($column);
         // $joincloumn = implode(",",$keys);
         // $arrValues = array_values($column);
-        $joincloumn1 = implode(",",$arrValues);
+        // $joincloumn1 = implode(",",$arrValues);
         $tablename = $this->tablename();
-        echo $joincloumn1 ;   
+        // echo $joincloumn1 ;   
         $sql = "DELETE FROM  ${tablename} WHERE id = ${id}" ;
         $stmt =  $this->db->prepare($sql);
         $stmt->execute();

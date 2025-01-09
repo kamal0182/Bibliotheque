@@ -1,27 +1,31 @@
 <?php 
 require_once "User.php";
+require_once "Livre.php";
+
+
 
 class Admin extends User {
-    public function addLivre ($id , $name , $auteur ,Category $category , Tage $tag ){
-        $nwlivre = new Livre($id , $name , $auteur , $category );
+    private Livre $livre ;
+    // public function createLivre ( $name , $auteur ){
+    //     return new Livre(  $name , $auteur );
+    // }
+    public function  setlivre (Livre $livre){
+        $this->livre = $livre ;
     }
-    public function addRole(Role  $roleName){
-        
+    public function  getlivre (){
+      return   $this->livre ;
     }
-    public function modifyrole(Role $roleName){
+    // public function addRole(Role  $roleName){
 
-    }
-    public function deleteRole(Role $roleName){
+    // }
+    // public function modifyrole(Role $roleName){
 
-    }
+    // }
+    // public function deleteRole(Role $roleName){
+
+    // }
 }
-$role1 = new Role(1,"Admin");
-$admin1 = new Admin(1,"younes","kamal","kamalyouness277@gmail.com","kamal1234",$role1);
-echo $admin1->getpassword();
-echo $admin1->getname();
-echo "<pre>" ;
-var_dump($admin1);
-echo "</pre>";
+
 
 
 

@@ -11,9 +11,8 @@ class Reservation {
     private $currentDate ;
     private $finaledate ;
     private $eta ; 
-    public function __construct($id , Livre $livre , Student $apprennante , $currentDate , $finaledate , Eta $eta  ) {
-        $this->id = $id;
-        $this->livre = $livre ; 
+    public function __construct(Livre $livre , Student $apprennante , $currentDate , $finaledate , Eta $eta  ) {
+        $this->livre = $livre ;
         $this->apprenant = $apprennante;
         $this->currentDate = $currentDate ;
         $this->finaledate  = $finaledate ; 
